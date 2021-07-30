@@ -1,4 +1,5 @@
 public inherited sharing class TripDetailsController {
+    
     @AuraEnabled(Cacheable=true)
     public static Weather_Daily_Forecast__c getCurrentTemperature(Id spacePointId) {
         Set<Id> ids = new Set<Id>{ spacePointId };

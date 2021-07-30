@@ -1,4 +1,5 @@
 trigger LeadTrigger on Lead(after update) {
+    
     if (!LeadTriggerHandler.wasExecuted) {
         LeadTriggerHandler.wasExecuted = true;
 

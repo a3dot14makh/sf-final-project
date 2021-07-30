@@ -1,9 +1,16 @@
 public class TouristManager {
+
     public static List<Tourist__c> getById(Set<Id> idSet) {
         if (idSet == null || idSet.isEmpty()) {
             return new List<Tourist__c>();
         }
-        return [SELECT Id, Age__c, DuplicateKey__c FROM Tourist__c WHERE Id IN :idSet];
+        return [
+            SELECT Id, 
+            Age__c, 
+            DuplicateKey__c 
+            FROM Tourist__c 
+            WHERE Id IN :idSet
+        ];
     }
 
     public static List<Tourist__c> getByName(String name) {
@@ -48,17 +55,6 @@ public class TouristManager {
             LIMIT 10
         ];
     }
-
-    /* public static List<Tourist__c> getByNameAndEmail(Set<String> nameSet, Set<String> emailSet) {
-        if (nameSet == null || nameSet.isEmpty() || emailSet == null || emailSet.isEmpty()) {
-            return new List<Tourist__c>();
-        }
-        return [
-            SELECT Id, Name, Email__c
-            FROM Tourist__c
-            WHERE Name IN :nameSet AND Email__c IN :emailSet
-        ];
-    } */
 
     public static List<Tourist__c> getByDuplicateKeys(Set<String> duplicateKeys, Set<Id> exclusionId) {
         if (
@@ -130,6 +126,13 @@ public class TouristManager {
         if (idSet == null || idSet.isEmpty()) {
             return new List<Tourist__c>();
         }
-        return [SELECT Id, Name, Email__c, Contact__c FROM Tourist__c WHERE Contact__c IN :idSet];
+        return [
+            SELECT Id, 
+            Name, 
+            Email__c, 
+            Contact__c 
+            FROM Tourist__c 
+            WHERE Contact__c IN :idSet
+        ];
     }
 }

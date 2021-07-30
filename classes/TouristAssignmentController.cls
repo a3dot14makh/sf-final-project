@@ -1,4 +1,5 @@
 public inherited sharing class TouristAssignmentController {
+    
     @AuraEnabled(Cacheable=true)
     public static List<Trip__c> fetchTrips(Id touristId) {
         Set<Id> ids = new Set<Id>{ touristId };

@@ -1,5 +1,5 @@
 public without sharing class TripService {
-    /* with sharing without*/
+
     public static void assignTourists(Id tripId, Set<Id> touristsId, String status) {
         List<Flight__c> flights = new List<Flight__c>();
 

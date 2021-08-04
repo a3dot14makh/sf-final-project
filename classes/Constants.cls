@@ -23,4 +23,7 @@ public class Constants {
     public static final String INCOMING_MAIL_PARAMETER_NAME_NAME = 'Name';
     public static final String INCOMING_MAIL_PARAMETER_NAME_BIRTHDAY = 'Birthday';
     public static final String EMAIL_TEMPLATE_SUITABLE_TRIPS_LINK = 'SuitableTripsLink';
+    public static final String NEW_TOURIST_BY_LEAD_VALIDATION_ERROR_EMAIL = 'Complete Email field';
+    public static final String NEW_TOURIST_BY_LEAD_VALIDATION_ERROR_BIRTHDAY = 'Complete Birthday Tourist field';
+    public static final String EMAIL_SENDER_DISPLAY_NAME_FOR_TOURIST = 'Vandrouka Inc.';
 }

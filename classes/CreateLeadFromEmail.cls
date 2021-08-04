@@ -12,7 +12,7 @@ global class CreateLeadFromEmail implements Messaging.InboundEmailHandler {
             Email = email.fromAddress,
             LastName = params.get(Constants.INCOMING_MAIL_PARAMETER_NAME_NAME),
             Company = params.get(Constants.INCOMING_MAIL_PARAMETER_NAME_COMPANY_NAME),
-            Description = params.get(Constants.INCOMING_MAIL_PARAMETER_NAME_BIRTHDAY)
+            Birthday_Tourist__c = Date.parse(params.get(Constants.INCOMING_MAIL_PARAMETER_NAME_BIRTHDAY))
         );
         insert lead;
 

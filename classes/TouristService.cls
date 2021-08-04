@@ -57,7 +57,7 @@ public class TouristService {
 
             EmailService.sendEmailTemplate(
                 emailAddress,
-                tourist.Name,
+                Constants.EMAIL_SENDER_DISPLAY_NAME_FOR_TOURIST,
                 Constants.EMAIL_TEMPLATE_SUITABLE_TRIPS_LINK,
                 tourist.Contact__c,
                 tourist.Id
@@ -65,21 +65,29 @@ public class TouristService {
         }
     }
 
-    public static void createTouristsByContacts(List<Contact> contacts) {
+    public static List<Tourist__c> createByLeadsConverted(List<Lead> leads) {
         List<Tourist__c> tourists = new List<Tourist__c>();
 
-        for (Contact contact : contacts) {
-            Tourist__c tourist = new Tourist__c(
-                Name = contact.Name,
-                Birthday__c = Date.parse(contact.Description),
-                Email__c = contact.Email,
-                Contact__c = contact.Id
-            );
-            tourists.add(tourist);
+        for (Lead lead : leads) {
+            if (String.isBlank(lead.Email)) {
+                lead.Email.addError(Constants.NEW_TOURIST_BY_LEAD_VALIDATION_ERROR_EMAIL);
+            } else if (lead.Birthday_Tourist__c == null) {
+                lead.Birthday_Tourist__c.addError(Constants.NEW_TOURIST_BY_LEAD_VALIDATION_ERROR_BIRTHDAY);
+            } else {
+                Tourist__c tourist = new Tourist__c(
+                    Name = lead.LastName,
+                    Birthday__c = lead.Birthday_Tourist__c,
+                    Email__c = lead.Email,
+                    Contact__c = lead.convertedContactId
+                );
+                tourists.add(tourist);
+            }
         }
 
         if (!tourists.isEmpty()) {
             insert tourists;
         }
+
+        return tourists;
     }
 }

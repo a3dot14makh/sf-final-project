@@ -1,19 +1,19 @@
 public with sharing class LeadTriggerHandler {
     public static Boolean wasExecuted = false;
 
-    public static void onAfterUpdate(Map<Id, Lead> newMap) {
-        Set<Id> convertedContactIds = new Set<Id>();
+    public static void onAfterUpdate(Map<Id, Lead> oldMap, Map<Id, Lead> newMap) {
+        List<Lead> leadsConverted = new List<Lead>();
 
         for (Lead lead : newMap.values()) {
-            if (lead.convertedContactId != null) {
-                convertedContactIds.add(lead.convertedContactId);
+            if (lead.IsConverted == true && oldMap.get(lead.Id).IsConverted == false) {
+                leadsConverted.add(lead);
             }
         }
 
-        List<Contact> contacts = ContactManager.getById(convertedContactIds);
-        TouristService.createTouristsByContacts(contacts);
+        List<Tourist__c> tourists = TouristService.createByLeadsConverted(leadsConverted);
 
-        List<Tourist__c> tourists = TouristManager.getByContactId(convertedContactIds);
-        TouristService.sendEmailTemplate(tourists);
+        if (!tourists.isEmpty()) {
+            TouristService.sendEmailTemplate(tourists);
+        }
     }
 }

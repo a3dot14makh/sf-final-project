@@ -1,5 +1,4 @@
 public class TouristManager {
-
     public static List<Tourist__c> getById(Set<Id> idSet) {
         if (idSet == null || idSet.isEmpty()) {
             return new List<Tourist__c>();
@@ -119,20 +118,6 @@ public class TouristManager {
             FROM Tourist__c
             WHERE Active__c = TRUE
             ORDER BY Name ASC
-        ];
-    }
-
-    public static List<Tourist__c> getByContactId(Set<Id> idSet) {
-        if (idSet == null || idSet.isEmpty()) {
-            return new List<Tourist__c>();
-        }
-        return [
-            SELECT Id, 
-            Name, 
-            Email__c, 
-            Contact__c 
-            FROM Tourist__c 
-            WHERE Contact__c IN :idSet
         ];
     }
 }

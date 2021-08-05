@@ -2,6 +2,10 @@ public inherited sharing class TouristAssignmentController {
     
     @AuraEnabled(Cacheable=true)
     public static List<Trip__c> fetchTrips(Id touristId) {
+        if (touristId == null) {
+            throw new AuraHandledException(Constants.COMMUNITY_ERROR_MSG_GENERAL);
+        }
+
         Set<Id> ids = new Set<Id>{ touristId };
         Tourist__c tourist = TouristManager.getTouristWithFlightsById(ids)[0];
 

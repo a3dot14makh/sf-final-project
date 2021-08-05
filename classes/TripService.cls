@@ -9,7 +9,11 @@ public without sharing class TripService {
         }
 
         if (!flights.isEmpty()) {
-            insert flights;
+            try {
+                insert flights;
+            } catch (DmlException ex) {
+                System.debug('Error : ' + ex.getMessage());
+            }
         }
     }
 }

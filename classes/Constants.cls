@@ -26,4 +26,5 @@ public class Constants {
     public static final String NEW_TOURIST_BY_LEAD_VALIDATION_ERROR_EMAIL = 'Complete Email field';
     public static final String NEW_TOURIST_BY_LEAD_VALIDATION_ERROR_BIRTHDAY = 'Complete Birthday Tourist field';
     public static final String EMAIL_SENDER_DISPLAY_NAME_FOR_TOURIST = 'Vandrouka Inc.';
+    public static final String COMMUNITY_ERROR_MSG_GENERAL = System.Label.Community_error_msg_general;
 }
